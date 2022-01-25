@@ -40,19 +40,24 @@
       img.src = imgArray[i].src;
 
       function prev() {
-        if (i< 0) {
+        // console.log("first", i);
+        if (i == 0) {
           i = length - 1;
+        } else {
+          i -= 1;
         }
-        // alert( i)
-        img.src = imgArray[i--].src;
-        // alert( i);
+        // console.log("next", i);
+        img.src = imgArray[i].src;
       }
 
       function next() {
-        if (i == length) {
+        if (i == length - 1) {
           i = 0;
+        } else {
+          i += 1;
         }
-        img.src = imgArray[++i].src;
+
+        img.src = imgArray[i].src;
       }
     </script>
   </body>
