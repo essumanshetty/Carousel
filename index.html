@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h3>Carousel</h3>
+    <div class="container">
+      <div class="carousel">
+        <img
+          src="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
+          alt="img"
+        />
+      </div>
+      <div class="btns">
+        <button onclick="prev()">&lt;</button>
+        <button onclick="next()">&gt;</button>
+      </div>
+    </div>
+    <script>
+      var i = 0;
+      var imgArray = [
+        {
+          src: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1621867822738-ba65f95a8eea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+        },
+      ];
+
+      let img = document.querySelector("img");
+      let length = imgArray.length;
+      img.src = imgArray[i].src;
+
+      function prev() {
+        if (i< 0) {
+          i = length - 1;
+        }
+        // alert( i)
+        img.src = imgArray[i--].src;
+        // alert( i);
+      }
+
+      function next() {
+        if (i == length) {
+          i = 0;
+        }
+        img.src = imgArray[++i].src;
+      }
+    </script>
+  </body>
+</html>
