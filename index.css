@@ -6,22 +6,22 @@
 
 html,
 body {
-  background-color: #ccc;
+  background-color: #f3f3f3;
 }
-h3 {
+h2 {
   text-align: center;
 }
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(231, 218, 218);
+  flex-direction: column;
+  /* background-color: rgb(231, 218, 218); */
   margin: auto;
   max-width: 1200px;
   height: 100vh;
 }
 .carousel {
-  background-color: cyan;
   width: 550px;
   height: 400px;
   position: relative;
@@ -29,10 +29,10 @@ h3 {
 }
 img {
   width: 100%;
-
   object-fit: cover;
-
-  max-height: 100%;
+  height: 100%;
+  border-radius: 10px;
+  animation: animate 4s infinite  ease-in;
 }
 .btns {
   position: absolute;
@@ -42,15 +42,55 @@ img {
   background-color: rgba(0, 0, 0, 0);
 }
 .btns button {
-  padding: 0.5rem 1rem;
+  background-color: transparent;
   outline: 0;
   border: 0;
-  font-size: 1.5rem;
-  border-radius: 50%;
+  font-size: 2.5rem;
+  font-weight: bold;
   z-index: 2;
-  box-shadow: 2px 2px 15px 5px #ccc;
+  margin: 0 1rem;
+  color: #12a1de;
 }
 .btns button:hover {
-  background-color: #333;
   color: #fff;
+}
+
+/* Dots */
+.dots {
+  position: absolute;
+  width: 550px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0), 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 5px;
+}
+.dot:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.selected {
+  background-color: red;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }

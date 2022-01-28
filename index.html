@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carousel</title>
     <link rel="stylesheet" href="index.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <h3>Carousel</h3>
     <div class="container">
+      <h2>Carousel</h2>
       <div class="carousel">
         <img
           src="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
@@ -17,28 +27,70 @@
         />
       </div>
       <div class="btns">
-        <button onclick="prev()">&lt;</button>
-        <button onclick="next()">&gt;</button>
+        <button onclick="prev()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+        <button onclick="next()">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+      </div>
+
+      <div class="dots">
+        <!-- <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div> -->
       </div>
     </div>
+
     <script>
       var i = 0;
       var imgArray = [
         {
-          src: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+          src: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         },
         {
-          src: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
+          src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=974&q=80",
         },
         {
           src: "https://images.unsplash.com/photo-1621867822738-ba65f95a8eea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+        },
+        {
+          src: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=415&q=80",
         },
       ];
 
       let img = document.querySelector("img");
       let length = imgArray.length;
       img.src = imgArray[i].src;
+      let dots = document.querySelector(".dots");
+      var dotList = [];
 
+      window.onload = function () {
+        for (let j = 0; j < length; j++) {
+          let dot = document.createElement("div");
+          dot.classList.add("dot");
+          dot.addEventListener("click", function () {
+            img.src = imgArray[j].src;
+            indicator(j);
+            i = j;
+          });
+          dots.append(dot);
+        }
+
+        dotList = document.querySelectorAll(".dot");
+        dotList[0].classList.add("selected");
+      };
+
+      function indicator(temp) {
+        dotList = document.querySelectorAll(".dot");
+        for (let j = 0; j < length; j++) {
+          if (j == temp) {
+            dotList[j].classList.add("selected");
+          } else {
+            dotList[j].classList.remove("selected");
+          }
+        }
+      }
       function prev() {
         // console.log("first", i);
         if (i == 0) {
@@ -46,6 +98,7 @@
         } else {
           i -= 1;
         }
+        indicator(i);
         // console.log("next", i);
         img.src = imgArray[i].src;
       }
@@ -56,9 +109,13 @@
         } else {
           i += 1;
         }
-
+        indicator(i);
         img.src = imgArray[i].src;
       }
+      setInterval(() => {
+        next();
+        indicator(i);
+      }, 4000);
     </script>
   </body>
 </html>
